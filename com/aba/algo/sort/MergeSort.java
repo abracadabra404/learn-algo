@@ -19,6 +19,20 @@ public class MergeSort {
     }
 
 
+    /**
+     * 归并排序
+     * 归并排序是一种分而治之的算法，通过递归的方式将数组分为较小的数组，直到每个小数组只有一个位置，接着将数组归并成排序好的数组。
+     * 不是原地排序算法，空间复杂度为O(n)。每次合并需要申请额外的临时空间，但最多不超多n个元素的大小。
+     * 是稳定排序算法，对相等键值的元素排序后，它们的前后顺序保持不变
+     * 时间复杂度为O(nlogn)，最好最坏平均时间复杂度都是O(nlogn)。执行效率与原始数据的有序程度无关。
+     * todo：merge函数的时间复杂度为O(n)，递归调用mergeSort函数的时间复杂度为O(logn)，所以总的时间复杂度为O(nlogn)。
+     * 优化：
+     * 1. 哨兵技巧简化merge函数
+     * @param: [arr]
+     * @return: void
+     * @author: abracadabra
+     * @date: 2024/6/24 21:52
+     */
     public static void mergeSort(int[] arr) {
         int length = arr.length;
         if (arr == null || length < 2) {
