@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class MergeSort {
 
     public static void main(String[] args) {
-        int[] arr = {1, 3, 2, 6, 4, 5};
+        int[] arr = {1, 3, 2, 6,5,4};
         mergeSort(arr);
         System.out.println(Arrays.toString(arr));
 
@@ -35,7 +35,7 @@ public class MergeSort {
         int mid = (left + right) / 2;
         mergeSortRecursive(arr, left, mid);
         mergeSortRecursive(arr, mid + 1, right);
-        merge(arr, left, mid, right);
+        mergeOptimize(arr, left, mid, right);
     }
 
 
@@ -79,6 +79,38 @@ public class MergeSort {
             arr[index] = rightArray[j];
             j++;
             index++;
+        }
+    }
+
+    private static void mergeOptimize(int[] arr, int left, int mid, int right) {
+        // 找到两个子数组的大小
+        int leftLength = mid - left + 1;
+        int rightLength = right - mid;
+        // 申请两个对应大小的数组
+        int[] leftArray = new int[leftLength + 1];
+        int[] rightArray = new int[rightLength + 1];
+        // 把数据复制到这两个数组中
+        for (int i = 0; i < leftLength; i++) {
+            leftArray[i] = arr[left + i];
+        }
+        for (int j = 0; j < rightLength; j++) {
+            rightArray[j] = arr[mid + 1 + j];
+        }
+        // 在这里添加边界判断，防止数组越界. 哨兵技巧
+        leftArray[leftLength] = Integer.MAX_VALUE;
+        rightArray[rightLength] = Integer.MAX_VALUE;
+
+        // 初始化两个数组的指针
+        int i = 0, j = 0;
+        // 合并两个子数组
+        for (int index = left; index <= right; index++) {
+            if (leftArray[i] <= rightArray[j]) {
+                arr[index] = leftArray[i];
+                i++;
+            } else {
+                arr[index] = rightArray[j];
+                j++;
+            }
         }
     }
 }
