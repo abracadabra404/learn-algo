@@ -14,7 +14,8 @@ import java.util.Collections;
 public class BucketSort {
 
     public static void main(String[] args) {
-        float[] arr = {0.72f, 0.12f, 0.65f, 0.95f, 0.48f, 0.76f};
+//        float[] arr = {0.72f, 0.12f, 0.65f, 0.95f, 0.48f, 0.76f};
+        float[] arr = {0.140f, 0.130f, 0.150f, 0.145f, 0.135f, 0.147f, 0.136f};
         bucketSort(arr);
         System.out.println(Arrays.toString(arr));
     }
