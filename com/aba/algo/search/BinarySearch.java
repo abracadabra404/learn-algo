@@ -10,10 +10,12 @@ package com.aba.algo.search;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int[] nums = {-1, 0, 3, 5, 9, 12};
+        int[] nums = {-1, 0, 3, 5, 9, 9, 9, 12};
         int target = 9;
 //        System.out.println(binarySearch(nums, target));
-        System.out.println(binarySearchRecursive(nums,0,nums.length-1, target));
+//        System.out.println(binarySearchRecursive(nums,0,nums.length-1, target));
+        System.out.println(binarySearchVariableFirstTarget(nums, target));
+        System.out.println(binarySearchVariableLastTarget(nums, target));
     }
 
     /**
@@ -67,5 +69,81 @@ public class BinarySearch {
         } else {
             return binarySearchRecursive(nums, low, mid - 1, target);
         }
+    }
+
+
+    /**
+     * 二分查找的变种1:
+     * 查找第一个与 target 相等的元素，返回其索引
+     * @param: [nums, target]
+     * @return: int
+     * @author: abracadabra
+     * @date: 2024/6/30 15:05
+     */
+    public static int binarySearchVariableFirstTarget(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        //  注意：这里使用 <= ，是为了防止数组越界. 退出条件不是low<high,而是low<=high
+        while (low <= high) {
+            // 防止 (low + high) 溢出 , 替换为：low + (high - low) / 2
+            // low + (high - low) / 2 替换为 low + ((high - low) >> 1))
+//            int mid = low + (high - low) / 2;
+            int mid = low + ((high - low) >> 1);
+            int midValue = nums[mid];
+            if (midValue < target) {
+                // 注意：这里使用的是 low = mid + 1;
+                // 因为如果使用 low = mid，high = mid,可能会发生死循环，当low=high=3，若a[3]!=target,无法退出循环
+                low = mid + 1;
+            } else if (midValue > target){
+                high = mid - 1;
+            } else {
+                // midValue == target
+                // 要查找第一个等于给定值的元素，就继续查找左边的元素
+                // mid=0,这个元素是第一个等于给定值的元素，直接返回,如果mid前一个元素!=target,这个元素也是第一个出现的
+                if ((mid == 0) || (nums[mid - 1] != target)) {
+                    return mid;
+                } else {
+                    high = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+
+    public static int binarySearchVariableLastTarget(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        //  注意：这里使用 <= ，是为了防止数组越界. 退出条件不是low<high,而是low<=high
+        while (low <= high) {
+            // 防止 (low + high) 溢出 , 替换为：low + (high - low) / 2
+            // low + (high - low) / 2 替换为 low + ((high - low) >> 1))
+//            int mid = low + (high - low) / 2;
+            int mid = low + ((high - low) >> 1);
+            int midValue = nums[mid];
+            if (midValue < target) {
+                // 注意：这里使用的是 low = mid + 1;
+                // 因为如果使用 low = mid，high = mid,可能会发生死循环，当low=high=3，若a[3]!=target,无法退出循环
+                low = mid + 1;
+            } else if (midValue > target){
+                high = mid - 1;
+            } else {
+                // midValue == target
+                // 要查找第一个等于给定值的元素，就继续查找左边的元素
+                // 如果mid是数组的最后一个元素
+                // 或者 mid的下一个元素不等于给定值，则mid就是最后一个出现的
+                if ((mid == nums.length-1) || (nums[mid + 1] != target)) {
+                    return mid;
+                } else {
+                    low = mid + 1;
+                }
+            }
+        }
+        return -1;
     }
 }
