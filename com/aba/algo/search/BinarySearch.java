@@ -11,11 +11,13 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 9, 9, 12};
-        int target = 9;
+        int target = 4;
 //        System.out.println(binarySearch(nums, target));
 //        System.out.println(binarySearchRecursive(nums,0,nums.length-1, target));
-        System.out.println(binarySearchVariableFirstTarget(nums, target));
-        System.out.println(binarySearchVariableLastTarget(nums, target));
+//        System.out.println(binarySearchVariableFirstTarget(nums, target));
+//        System.out.println(binarySearchVariableLastTarget(nums, target));
+//        System.out.println(binarySearchVariableFirstGeTarget(nums,target));
+        System.out.println(binarySearchVariableLastLeTarget(nums,target));
     }
 
     /**
@@ -113,6 +115,14 @@ public class BinarySearch {
         return -1;
     }
 
+    /**
+     * 二分查找变种2:
+     *  查找最后一个等于给定值的元素
+     * @param: [nums, target]
+     * @return: int
+     * @author: abracadabra
+     * @date: 2024/6/30 19:57
+     */
     public static int binarySearchVariableLastTarget(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return -1;
@@ -142,6 +152,80 @@ public class BinarySearch {
                 } else {
                     low = mid + 1;
                 }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 二分查找变种3:
+     *  查找第一个大于等于给定值的元素
+     * @param: [nums, target]
+     * @return: int
+     * @author: abracadabra
+     * @date: 2024/6/30 19:59
+     */
+    public static int binarySearchVariableFirstGeTarget(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        //  注意：这里使用 <= ，是为了防止数组越界. 退出条件不是low<high,而是low<=high
+        while (low <= high) {
+            // 防止 (low + high) 溢出 , 替换为：low + (high - low) / 2
+            // low + (high - low) / 2 替换为 low + ((high - low) >> 1))
+//            int mid = low + (high - low) / 2;
+            int mid = low + ((high - low) >> 1);
+            int midValue = nums[mid];
+            if (midValue >= target) {
+                // 如果nums[mid] 前面没有元素，或者 nums[mid-1]< target, 则mid就是第一个大于等于给定值的元素;
+                // 否则，查找的值在[low,mid-1]之间
+                if ((mid == 0) || (nums[mid - 1] < target)) {
+                    return mid;
+                } else {
+                    high = mid - 1;
+                }
+            } else {
+                // 如果midValue < target, 则查找的值在[mid+1,high]之间
+                low = mid + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 二分查找变种4:
+     *  查找最后一个小于等于给定值的元素
+     * @param: [nums, target]
+     * @return: int
+     * @author: abracadabra
+     * @date: 2024/6/30 20:13
+     */
+    public static int binarySearchVariableLastLeTarget(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int low = 0;
+        int high = nums.length - 1;
+        //  注意：这里使用 <= ，是为了防止数组越界. 退出条件不是low<high,而是low<=high
+        while (low <= high) {
+            // 防止 (low + high) 溢出 , 替换为：low + (high - low) / 2
+            // low + (high - low) / 2 替换为 low + ((high - low) >> 1))
+//            int mid = low + (high - low) / 2;
+            int mid = low + ((high - low) >> 1);
+            int midValue = nums[mid];
+            if (midValue <= target) {
+                // 如果nums[mid] 后面没有元素，或者 nums[mid+1] > target, 则mid就是第一个小于等于给定值的元素;
+                // 否则，查找的值在[mid+1,high]之间
+                if ((mid == nums.length -1) || (nums[mid + 1] > target)) {
+                    return mid;
+                } else {
+                    low = mid + 1;
+                }
+            } else {
+                // 如果midValue > target, 则查找的值在[low,mid-1]之间
+                high = mid - 1;
             }
         }
         return -1;
