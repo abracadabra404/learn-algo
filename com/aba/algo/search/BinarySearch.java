@@ -1,5 +1,7 @@
 package com.aba.algo.search;
 
+import java.util.LinkedHashMap;
+
 /**
  * binary search
  *
@@ -10,14 +12,14 @@ package com.aba.algo.search;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int[] nums = {-1, 0, 3, 5, 9, 9, 9, 12};
-        int target = 4;
-//        System.out.println(binarySearch(nums, target));
+        int[] nums = {1, 3, 3, 3, 3, 6, 7, 9, 12, 14, 18};
+        int target = 18;
+        System.out.println(binarySearch(nums, target));
 //        System.out.println(binarySearchRecursive(nums,0,nums.length-1, target));
 //        System.out.println(binarySearchVariableFirstTarget(nums, target));
 //        System.out.println(binarySearchVariableLastTarget(nums, target));
 //        System.out.println(binarySearchVariableFirstGeTarget(nums,target));
-        System.out.println(binarySearchVariableLastLeTarget(nums,target));
+//        System.out.println(binarySearchVariableLastLeTarget(nums,target));
     }
 
     /**
