@@ -1,5 +1,6 @@
 package com.aba.algo.search;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 /**
@@ -20,6 +21,7 @@ public class BinarySearch {
 //        System.out.println(binarySearchVariableLastTarget(nums, target));
 //        System.out.println(binarySearchVariableFirstGeTarget(nums,target));
 //        System.out.println(binarySearchVariableLastLeTarget(nums,target));
+//        new HashMap<>()
     }
 
     /**
