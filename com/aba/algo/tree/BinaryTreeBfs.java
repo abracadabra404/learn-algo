@@ -18,6 +18,7 @@ public class BinaryTreeBfs {
      * 102. 二叉树的层序遍历
      * 广度优先遍历（breadth-first traversal）,广度优先搜索（breadth-first search bfs）
      * 广度优先遍历使用队列来实现，队列先进先出，符合广度优先的定义。
+     * 体现了一种“一圈一圈向外扩展”的逐层遍历方式
      * @param: [root]
      * @return: java.util.List<java.lang.Integer>
      * @author: abracadabra
@@ -45,17 +46,5 @@ public class BinaryTreeBfs {
         return  list;
     }
 
-    public static void main(String[] args) {
-        TreeNode n1 = new TreeNode(1);
-        TreeNode n2 = new TreeNode(2);
-        TreeNode n3 = new TreeNode(3);
-        TreeNode n4 = new TreeNode(4);
-        TreeNode n5 = new TreeNode(5);
-        n1.left = n2;
-        n1.right = n3;
-        n2.left = n4;
-        n2.right = n5;
-        List<Integer> val = levelOrder(n1);
-        System.out.println(val);
-    }
+
 }
