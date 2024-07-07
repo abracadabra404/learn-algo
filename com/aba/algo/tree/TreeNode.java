@@ -40,8 +40,9 @@ public class TreeNode {
 //        List<Integer> val = BinaryTreeBfs.levelOrder(n1);
 //        BinaryTreeDfs.preOrder(n1);
 //        BinaryTreeDfs.postOrder(n1);
-        BinaryTreeDfs.inOrder(n1);
-        System.out.println(BinaryTreeDfs.res);
+//        BinaryTreeDfs.inOrder(n1);
+//        System.out.println(BinaryTreeDfs.res);
+        System.out.println(BinaryTreeBfs.heightTree(n1));
     }
 
 

@@ -51,5 +51,19 @@ public class BinaryTreeDfs {
         res.add(root.val);
     }
 
+    // 计算二叉树的高度
+    // 1.如果二叉树为空，返回0
+    // 2.如果二叉树不为空，返回其根节点为起点的子树的最大高度
+    // 3.最大高度 = max(左子树的最大高度, 右子树的最大高度) + 1
+    // 4.左子树和右子树的最大高度，可以通过递归的方式计算
+    // 5.递归的终止条件是，当遇到空节点时，返回0
+    // 6.递归的单层逻辑是，计算左子树和右子树的最大高度，并取其中较大的值，再将该值加1
+    // 7.最终，返回计算得到的最大高度
+    public static int heightTree(TreeNode root) {
+        if (root == null)
+            return 0;
+        return Math.max(heightTree(root.left), heightTree(root.right)) + 1;
+    }
+
 
 }
