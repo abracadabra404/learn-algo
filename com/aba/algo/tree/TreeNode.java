@@ -42,7 +42,7 @@ public class TreeNode {
 //        BinaryTreeDfs.postOrder(n1);
 //        BinaryTreeDfs.inOrder(n1);
 //        System.out.println(BinaryTreeDfs.res);
-        System.out.println(BinaryTreeBfs.heightTree(n1));
+//        System.out.println(BinaryTreeBfs.heightTree(n1));
     }
 
 
