@@ -1,10 +1,5 @@
 package com.aba.algo.tree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-
 /**
  * tree node
  *
@@ -17,8 +12,12 @@ public class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
-    TreeNode(int val) { this.val = val; }
 
+    TreeNode(int val) {
+        this.val = val;
+    }
+
+    int height;
 
 
     public static void main(String[] args) {
@@ -38,10 +37,6 @@ public class TreeNode {
 //        System.out.println(BinaryTreeDfs.res);
 //        System.out.println(BinaryTreeBfs.heightTree(n1));
     }
-
-
-
-
 
 
 }
